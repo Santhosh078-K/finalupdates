@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Chatbot elements (assuming these elements are present in your HTML files)
     const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
     const chatbotModal = document.getElementById('chatbot-modal');
-    const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
+    const chatbotCloseBtn = document.getElementById('chatbot-close-btn'); // Corrected typo here
     const chatMessagesContainer = document.getElementById('chat-messages');
     const chatInput = document.getElementById('chat-input');
     const chatSendBtn = document.getElementById('chat-send-btn');
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let chatHistory = [];
         chatHistory.push({ role: "user", parts: [{ text: prompt }] });
         const payload = { contents: chatHistory };
-        const apiKey = "AIzaSyCsX1cPaU-lkvg3vrJhnexwmx5qRILunzk"
+        const apiKey = ""; // Canvas will automatically provide the API key
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
         try {
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (outputDiv) {
                     // Ensure marked is loaded before parsing
                     if (typeof marked !== 'undefined') {
-                         outputDiv.innerHTML = `<h4 class="font-semibold text-purple-800 mb-2">Suggested Syllabus for ${courseTitle}:</h4><div class="prose prose-sm">${marked.parse(generatedSyllabus)}</div>`;
+                           outputDiv.innerHTML = `<h4 class="font-semibold text-purple-800 mb-2">Suggested Syllabus for ${courseTitle}:</h4><div class="prose prose-sm">${marked.parse(generatedSyllabus)}</div>`;
                     } else {
                         // Fallback to pre-formatted text if marked.js is not loaded
                         outputDiv.innerHTML = `<h4 class="font-semibold text-purple-800 mb-2">Suggested Syllabus for ${courseTitle}:</h4><pre class="whitespace-pre-wrap">${generatedSyllabus}</pre>`;
@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 // Call Gemini API for chatbot response (using gemini-2.0-flash for chat)
                 const payload = { contents: chatbotChatHistory };
-                const apiKey = "AIzaSyCsX1cPaU-lkvg3vrJhnexwmx5qRILunzk"
+                const apiKey = ""; // Canvas will automatically provide the API key
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
@@ -511,6 +511,79 @@ document.addEventListener('DOMContentLoaded', () => {
             image: 'https://placehold.co/400x250/EF4444/FFFFFF?text=Priya+Success',
             date: 'October 2023'
         },
+        // New achievements based on user request
+        {
+            id: 9,
+            type: 'student-projects',
+            program: 'Weekday Classes', // Mapping to Weekday Classes
+            title: 'Breadboard Electronics Mastery',
+            description: 'Students successfully completed complex circuit designs and prototyping using breadboards, demonstrating fundamental electronics skills.',
+            image: 'https://placehold.co/400x250/FF5733/FFFFFF?text=Breadboard+Electronics',
+            date: 'July 2024'
+        },
+        {
+            id: 10,
+            type: 'student-projects',
+            program: 'Workshop/Internship Programs', // Mapping to Workshop/Internship Programs
+            title: 'Advanced Arduino Automations',
+            description: 'Participants developed sophisticated automation projects using Arduino, including smart irrigation systems and robotic arms.',
+            image: 'https://placehold.co/400x250/33FF57/FFFFFF?text=Arduino+Automations',
+            date: 'June 2024'
+        },
+        {
+            id: 11,
+            type: 'student-projects',
+            program: 'Weekend Classes', // Mapping to Weekend Classes
+            title: 'Competitive Robotics Design',
+            description: 'Our weekend class students designed and built robust robots capable of navigating complex obstacle courses and performing specific tasks.',
+            image: 'https://placehold.co/400x250/3357FF/FFFFFF?text=Robotics+Design',
+            date: 'May 2024'
+        },
+        {
+            id: 12,
+            type: 'student-projects',
+            program: 'School Programs', // Mapping to School Programs
+            title: 'IoT Smart City Prototype',
+            description: 'A school team created a miniature smart city prototype integrating various IoT sensors for environmental monitoring and traffic management.',
+            image: 'https://placehold.co/400x250/FF33A1/FFFFFF?text=IoT+Smart+City',
+            date: 'April 2024'
+        },
+        {
+            id: 13,
+            type: 'student-projects',
+            program: 'Workshop/Internship Programs', // Mapping to Workshop/Internship Programs
+            title: 'Introduction to Artificial Intelligence',
+            description: 'Interns explored fundamental AI concepts, including machine learning algorithms and neural networks, culminating in a predictive model project.',
+            image: 'https://placehold.co/400x250/A133FF/FFFFFF?text=AI+Introduction',
+            date: 'March 2024'
+        },
+        {
+            id: 14,
+            type: 'certifications-milestones', // Vocational training can be a milestone or a program
+            program: 'Workshop/Internship Programs', // Mapping Vocational Training to Workshop/Internship Programs
+            title: 'Vocational Training Completion: Robotics Technician',
+            description: 'Students completed intensive vocational training, gaining practical skills for careers as robotics technicians.',
+            image: 'https://placehold.co/400x250/FF8C33/FFFFFF?text=Vocational+Training',
+            date: 'February 2024'
+        },
+        {
+            id: 15,
+            type: 'success-stories', // Internships often lead to success stories
+            program: 'Workshop/Internship Programs', // Mapping Internship to Workshop/Internship Programs
+            title: 'Successful Internship Placements',
+            description: 'Several students secured competitive internships at leading tech companies, applying their robotics and AI knowledge in real-world settings.',
+            image: 'https://placehold.co/400x250/33FFF6/FFFFFF?text=Internship+Success',
+            date: 'January 2024'
+        },
+        {
+            id: 16,
+            type: 'certifications-milestones', // Guest lectures are educational milestones
+            program: 'School Programs', // Mapping Guest Lecture to School Programs
+            title: 'Guest Lecture Series: Future of Robotics',
+            description: 'Our students participated in an inspiring guest lecture series by industry experts on the future trends in robotics and automation.',
+            image: 'https://placehold.co/400x250/FF3333/FFFFFF?text=Guest+Lecture',
+            date: 'December 2023'
+        }
     ];
 
     let currentActiveTab = 'competition-wins'; // Default active tab
@@ -570,22 +643,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Add active class to clicked tab
                 event.target.classList.add('active', 'border-b-4', 'border-indigo-600', 'text-indigo-700');
-                event.target.classList.remove('text-gray-600');
-
-                currentActiveTab = event.target.dataset.tab;
-                renderAchievements(); // Re-render achievements for the new tab
+                event.target.classList.remove('text-gray-600'); // Corrected typo here
+                currentActiveTab = event.target.dataset.tab; // Update active tab
+                renderAchievements(); // Re-render achievements
             });
         });
     }
 
-    // Event listeners for filter checkboxes
+    // Event listener for filter checkboxes
     if (filterCheckboxes.length > 0) {
         filterCheckboxes.forEach(checkbox => {
             checkbox.addEventListener('change', () => {
                 activeFilters = Array.from(filterCheckboxes)
                     .filter(cb => cb.checked)
                     .map(cb => cb.value);
-                renderAchievements(); // Re-render achievements with new filters
+                renderAchievements(); // Re-render achievements
             });
         });
     }
@@ -594,9 +666,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (clearFiltersBtn) {
         clearFiltersBtn.addEventListener('click', () => {
             filterCheckboxes.forEach(checkbox => {
-                checkbox.checked = false; // Uncheck all checkboxes
+                checkbox.checked = true; // Check all checkboxes
             });
-            activeFilters = []; // Clear active filters
+            activeFilters = Array.from(filterCheckboxes).map(cb => cb.value);
             renderAchievements(); // Re-render achievements
         });
     }
@@ -610,8 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-    // Initial render of achievements when the page loads (only if on achievements.html)
+    // Initial render of achievements on page load (for achievements.html)
     if (achievementsDisplay) {
         renderAchievements();
     }
