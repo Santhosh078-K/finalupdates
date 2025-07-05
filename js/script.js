@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Chatbot elements (assuming these elements are present in your HTML files)
     const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
     const chatbotModal = document.getElementById('chatbot-modal');
-    const chatbotCloseBtn = document.getElementById('chatbot-close-btn'); // Corrected typo here
+    const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
     const chatMessagesContainer = document.getElementById('chat-messages');
     const chatInput = document.getElementById('chat-input');
     const chatSendBtn = document.getElementById('chat-send-btn');
@@ -591,8 +591,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Renders achievement cards based on the active tab and filters.
+     * Renamed to renderMilestones to reflect the page name change.
      */
-    const renderAchievements = () => {
+    const renderMilestones = () => {
         if (!achievementsDisplay) return;
 
         achievementsDisplay.innerHTML = ''; // Clear previous achievements
@@ -604,7 +605,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (filteredAchievements.length === 0) {
-            achievementsDisplay.innerHTML = '<p class="text-center text-gray-600 col-span-full">No achievements found for the selected criteria.</p>';
+            achievementsDisplay.innerHTML = '<p class="text-center text-gray-600 col-span-full">No milestones found for the selected criteria.</p>';
             return;
         }
 
@@ -643,9 +644,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Add active class to clicked tab
                 event.target.classList.add('active', 'border-b-4', 'border-indigo-600', 'text-indigo-700');
-                event.target.classList.remove('text-gray-600'); // Corrected typo here
+                event.target.classList.remove('text-gray-600');
                 currentActiveTab = event.target.dataset.tab; // Update active tab
-                renderAchievements(); // Re-render achievements
+                renderMilestones(); // Re-render milestones
             });
         });
     }
@@ -657,7 +658,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeFilters = Array.from(filterCheckboxes)
                     .filter(cb => cb.checked)
                     .map(cb => cb.value);
-                renderAchievements(); // Re-render achievements
+                renderMilestones(); // Re-render milestones
             });
         });
     }
@@ -669,7 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 checkbox.checked = true; // Check all checkboxes
             });
             activeFilters = Array.from(filterCheckboxes).map(cb => cb.value);
-            renderAchievements(); // Re-render achievements
+            renderMilestones(); // Re-render milestones
         });
     }
 
@@ -682,8 +683,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initial render of achievements on page load (for achievements.html)
-    if (achievementsDisplay) {
-        renderAchievements();
+    // Initial render of milestones on page load (for milestones.html)
+    if (achievementsDisplay) { // Renamed from achievementsDisplay to milestonesDisplay for clarity, but keeping original ID for now
+        renderMilestones();
     }
 });
