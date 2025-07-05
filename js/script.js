@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formMessage = document.getElementById('form-message');
 
     // Get elements for the LLM features (from courses.html and programs.html)
-    const generateSyllabusButtons = document.querySelectorAll('.generate-syllabus-btn');
+    // Removed generateSyllabusButtons as the buttons are removed from HTML
     const workshopTopicInput = document.getElementById('workshop-topic-input');
     const generateWorkshopBtn = document.getElementById('generate-workshop-btn');
     const workshopOutput = document.getElementById('workshop-output');
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     async function callGeminiAPI(chatHistory) {
         const payload = { contents: chatHistory };
-        const apiKey = "AIzaSyBwN4fUb8yhpV6Jk9qUbrDNvuoZy7ezNMY"; // Canvas will automatically provide the API key
+        const apiKey = ""; // Canvas will automatically provide the API key
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
         try {
@@ -234,35 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Feature 1: Generate Syllabus Idea on Courses Page
-    // Check if generateSyllabusButtons exist (only on courses.html)
-    if (generateSyllabusButtons.length > 0) {
-        generateSyllabusButtons.forEach(button => {
-            button.addEventListener('click', async (event) => {
-                const courseTitle = event.target.dataset.courseTitle;
-                const outputDiv = event.target.nextElementSibling; // The div right after the button
-
-                if (outputDiv) {
-                    outputDiv.classList.remove('hidden');
-                    outputDiv.innerHTML = '<p class="text-center text-purple-700">Generating syllabus...</p>';
-                }
-
-                const prompt = `Generate a detailed syllabus idea for a robotics course titled "${courseTitle}" for school students. Include module names, key topics, and a brief description for each module. Structure it as a clear, easy-to-read list or bullet points.`;
-                const chatHistoryForSyllabus = [{ role: "user", parts: [{ text: prompt }] }];
-
-                const generatedSyllabus = await callGeminiAPI(chatHistoryForSyllabus);
-
-                if (outputDiv) {
-                    // Ensure marked is loaded before parsing
-                    if (typeof marked !== 'undefined') {
-                           outputDiv.innerHTML = `<h4 class="font-semibold text-purple-800 mb-2">Suggested Syllabus for ${courseTitle}:</h4><div class="prose prose-sm">${marked.parse(generatedSyllabus)}</div>`;
-                    } else {
-                        // Fallback to pre-formatted text if marked.js is not loaded
-                        outputDiv.innerHTML = `<h4 class="font-semibold text-purple-800 mb-2">Suggested Syllabus for ${courseTitle}:</h4><pre class="whitespace-pre-wrap">${generatedSyllabus}</pre>`;
-                    }
-                }
-            });
-        });
-    }
+    // Removed generateSyllabusButtons logic as the buttons are removed from HTML
 
 
     // Feature 2: Generate Workshop Ideas on Programs Page

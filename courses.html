@@ -41,20 +41,21 @@
         </div>
     </header>
 
-    <main class="pt-20"> <section id="courses-page" class="py-16 bg-gray-50">
-            <div class="container mx-auto px-4">
+    <main class="pt-20">
+        <section id="courses-page" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4 max-w-7xl"> <!-- Added max-w-7xl for better large screen control -->
                 <h2 class="text-3xl sm:text-4xl font-bold text-center text-indigo-700 mb-12 animate-on-scroll">Explore Our Robotics Courses</h2>
                 <p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
                     Our curriculum is designed to be engaging, progressive, and hands-on, catering to various age groups and skill levels.
                 </p>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch">
+                    <!-- Course Card 1: Breadboard Electronics -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll flex flex-col h-full">
                         <img src="https://res.cloudinary.com/dujxs5154/image/upload/v1751727785/breadboard_okskzz.jpg" alt="Beginner Robotics Course" class="w-full h-48 object-cover">
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-2xl font-bold text-indigo-700 mb-2">Breadboard Electronics</h3>
-                            <p class="text-gray-700 mb-4">
+                            <p class="text-gray-700 mb-4 flex-grow">
                                 Perfect for young learners taking their first step into robotics. Learn basic concepts through fun, simple projects.
                             </p>
                             <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -66,22 +67,16 @@
                             <div class="flex justify-between items-center text-indigo-600 font-semibold mb-4">
                                 <span><i class="fas fa-user-graduate mr-2"></i>Ages: 8-12</span>
                             </div>
-                            <button class="generate-syllabus-btn w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 transform hover:scale-105" data-course-title="Breadboard Electronics">
-                                Generate Syllabus
-                            </button>
-                                
-                            </div>
-                            
-                            <div class="syllabus-output bg-purple-50 p-4 rounded-md mt-4 hidden"></div>
+                            <!-- Removed Generate Syllabus button and output div -->
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll">
-                        <img src="https://res.cloudinary.com/dujxs5154/image/upload/v1751727888/arudino_bgvbsp.jpg
-                        " alt="Arduino Automations" class="w-full h-48 object-cover">
-                        <div class="p-6">
+                    <!-- Course Card 2: Arduino Automations -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll flex flex-col h-full">
+                        <img src="https://res.cloudinary.com/dujxs5154/image/upload/v1751727888/arudino_bgvbsp.jpg" alt="Arduino Automations" class="w-full h-48 object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-2xl font-bold text-indigo-700 mb-2">Arduino Automations</h3>
-                            <p class="text-gray-700 mb-4">
+                            <p class="text-gray-700 mb-4 flex-grow">
                                 For students ready to explore automation and control with Arduino.
                             </p>
                             <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -93,18 +88,16 @@
                             <div class="flex justify-between items-center text-indigo-600 font-semibold mb-4">
                                 <span><i class="fas fa-user-graduate mr-2"></i>Ages: 10-15</span>
                             </div>
-                            <button class="generate-syllabus-btn w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 transform hover:scale-105" data-course-title="Arduino Automations">
-                                Generate Syllabus
-                            </button>
-                            <div class="syllabus-output bg-purple-50 p-4 rounded-md mt-4 hidden"></div>
+                            <!-- Removed Generate Syllabus button and output div -->
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll">
+                    <!-- Course Card 3: Artificial Intelligence -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll flex flex-col h-full">
                         <img src="https://res.cloudinary.com/dujxs5154/image/upload/v1751728568/ai_drgx3m.jpg" alt="Artificial Intelligence" class="w-full h-48 object-cover">
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-2xl font-bold text-indigo-700 mb-2">Artificial Intelligence</h3>
-                            <p class="text-gray-700 mb-4">
+                            <p class="text-gray-700 mb-4 flex-grow">
                                 For students ready to explore advanced concepts like AI and machine learning.
                             </p>
                             <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -116,18 +109,16 @@
                             <div class="flex justify-between items-center text-indigo-600 font-semibold mb-4">
                                 <span><i class="fas fa-user-graduate mr-2"></i>Ages: 13-18</span>
                             </div>
-                            <button class="generate-syllabus-btn w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 transform hover:scale-105" data-course-title="Artificial Intelligence">
-                                Generate Syllabus
-                            </button>
-                            <div class="syllabus-output bg-purple-50 p-4 rounded-md mt-4 hidden"></div>
+                            <!-- Removed Generate Syllabus button and output div -->
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll">
+                    <!-- Course Card 4: Robotics -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll flex flex-col h-full">
                         <img src="https://res.cloudinary.com/dujxs5154/image/upload/v1751385939/r2_to2htn.jpg" alt="Robotics" class="w-full h-48 object-cover">
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-2xl font-bold text-indigo-700 mb-2">Robotics</h3>
-                            <p class="text-gray-700 mb-4">
+                            <p class="text-gray-700 mb-4 flex-grow">
                                 For students ready to design, build, and program robots.
                             </p>
                             <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -139,18 +130,16 @@
                             <div class="flex justify-between items-center text-indigo-600 font-semibold mb-4">
                                 <span><i class="fas fa-user-graduate mr-2"></i>Ages: 10-16</span>
                             </div>
-                            <button class="generate-syllabus-btn w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 transform hover:scale-105" data-course-title="Robotics">
-                                Generate Syllabus
-                            </button>
-                            <div class="syllabus-output bg-purple-50 p-4 rounded-md mt-4 hidden"></div>
+                            <!-- Removed Generate Syllabus button and output div -->
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll">
+                    <!-- Course Card 5: IoT -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll flex flex-col h-full">
                         <img src="https://res.cloudinary.com/dujxs5154/image/upload/v1751728659/iot_bhnezo.png" alt="IoT Robotics Course" class="w-full h-48 object-cover">
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-2xl font-bold text-indigo-700 mb-2">IoT</h3>
-                            <p class="text-gray-700 mb-4">
+                            <p class="text-gray-700 mb-4 flex-grow">
                                 Connect robotics with the Internet of Things! Learn to build smart devices that interact with the cloud. 
                             </p>
                             <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -162,18 +151,16 @@
                             <div class="flex justify-between items-center text-indigo-600 font-semibold mb-4">
                                 <span><i class="fas fa-user-graduate mr-2"></i>Ages: 11-16</span>
                             </div>
-                            <button class="generate-syllabus-btn w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 transform hover:scale-105" data-course-title="IoT">
-                                Generate Syllabus
-                            </button>
-                            <div class="syllabus-output bg-purple-50 p-4 rounded-md mt-4 hidden"></div>
+                            <!-- Removed Generate Syllabus button and output div -->
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll">
+                    <!-- Course Card 6: C/C++ Programming -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll flex flex-col h-full">
                         <img src="https://res.cloudinary.com/dujxs5154/image/upload/v1751732061/c_o1shws.png" alt="C/C++ Course" class="w-full h-48 object-cover">
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-2xl font-bold text-indigo-700 mb-2">C/C++ Programming</h3>
-                            <p class="text-gray-700 mb-4">
+                            <p class="text-gray-700 mb-4 flex-grow">
                                 Learn the fundamentals of C/C++ programming for embedded systems and robotics control.
                             </p>
                             <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -185,18 +172,16 @@
                             <div class="flex justify-between items-center text-indigo-600 font-semibold mb-4">
                                 <span><i class="fas fa-user-graduate mr-2"></i>Ages: 12-17</span>
                             </div>
-                            <button class="generate-syllabus-btn w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 transform hover:scale-105" data-course-title="C/C++ Programming">
-                                Generate Syllabus
-                            </button>
-                            <div class="syllabus-output bg-purple-50 p-4 rounded-md mt-4 hidden"></div>
+                            <!-- Removed Generate Syllabus button and output div -->
                         </div>
                     </div>
 
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll">
+                    <!-- Course Card 7: Python Programming -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl animate-on-scroll flex flex-col h-full">
                         <img src="https://placehold.co/400x250/3498DB/FFFFFF?text=Python+Code" alt="Python Course" class="w-full h-48 object-cover">
-                        <div class="p-6">
+                        <div class="p-6 flex flex-col flex-grow">
                             <h3 class="text-2xl font-bold text-indigo-700 mb-2">Python Programming</h3>
-                            <p class="text-gray-700 mb-4">
+                            <p class="text-gray-700 mb-4 flex-grow">
                                 Master Python for robotics, data analysis, and machine learning applications.
                             </p>
                             <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -208,10 +193,7 @@
                             <div class="flex justify-between items-center text-indigo-600 font-semibold mb-4">
                                 <span><i class="fas fa-user-graduate mr-2"></i>Ages: 12-17</span>
                             </div>
-                            <button class="generate-syllabus-btn w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 transform hover:scale-105" data-course-title="Python Programming">
-                                Generate Syllabus
-                            </button>
-                            <div class="syllabus-output bg-purple-50 p-4 rounded-md mt-4 hidden"></div>
+                            <!-- Removed Generate Syllabus button and output div -->
                         </div>
                     </div>
 
