@@ -163,11 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Set the _replyto hidden field before submission (assuming an email input exists or can be derived)
-            // If there's no explicit email input, you might need to add one or remove this line.
-            // For now, I'll comment it out as there's no 'email-address' ID in the registration form.
-            // document.getElementById('form-reply-to-email').value = emailAddress;
-
             // Use fetch to submit the form data to Formspree
             const formData = new FormData(registrationForm);
 
@@ -200,12 +195,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Calls the Gemini API to generate text.
-     * @param {string} prompt - The prompt to send to the LLM.
+     * @param {Array<Object>} chatHistory - The chat history to send to the LLM.
      * @returns {Promise<string>} - The generated text.
      */
-    async function callGeminiAPI(prompt) {
-        let chatHistory = [];
-        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+    async function callGeminiAPI(chatHistory) {
         const payload = { contents: chatHistory };
         const apiKey = ""; // Canvas will automatically provide the API key
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
@@ -216,18 +209,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error(`Gemini API HTTP error! Status: ${response.status}, Body: ${errorText}`);
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
             const result = await response.json();
+            console.log("Gemini API raw response:", result); // Log the full response for debugging
+
             if (result.candidates && result.candidates.length > 0 &&
                 result.candidates[0].content && result.candidates[0].content.parts &&
                 result.candidates[0].content.parts.length > 0) {
                 return result.candidates[0].content.parts[0].text;
             } else {
-                console.error("Gemini API returned an unexpected structure:", result);
-                return "Error: Could not generate content.";
+                console.error("Gemini API returned an unexpected structure or no content:", result);
+                return "Error: Could not generate content. Unexpected API response.";
             }
         } catch (error) {
             console.error("Error calling Gemini API:", error);
-            return "Error: Failed to connect to AI service.";
+            return "Error: Failed to connect to AI service or a network issue occurred.";
         }
     }
 
@@ -245,8 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 const prompt = `Generate a detailed syllabus idea for a robotics course titled "${courseTitle}" for school students. Include module names, key topics, and a brief description for each module. Structure it as a clear, easy-to-read list or bullet points.`;
+                const chatHistoryForSyllabus = [{ role: "user", parts: [{ text: prompt }] }];
 
-                const generatedSyllabus = await callGeminiAPI(prompt);
+                const generatedSyllabus = await callGeminiAPI(chatHistoryForSyllabus);
 
                 if (outputDiv) {
                     // Ensure marked is loaded before parsing
@@ -277,8 +280,9 @@ document.addEventListener('DOMContentLoaded', () => {
             workshopOutput.innerHTML = '<p class="text-center text-purple-700">Generating workshop ideas...</p>';
 
             const prompt = `Generate 3-5 creative and engaging workshop ideas for school students based on the topic "${topic}" related to robotics and technology. For each idea, provide a catchy name and a brief, exciting description. Format as a numbered list.`;
+            const chatHistoryForWorkshop = [{ role: "user", parts: [{ text: prompt }] }];
 
-            const generatedIdeas = await callGeminiAPI(prompt);
+            const generatedIdeas = await callGeminiAPI(chatHistoryForWorkshop);
 
             if (workshopOutput) {
                 // Ensure marked is loaded before parsing
@@ -381,35 +385,22 @@ document.addEventListener('DOMContentLoaded', () => {
             chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
 
             try {
-                // Call Gemini API for chatbot response (using gemini-2.0-flash for chat)
-                const payload = { contents: chatbotChatHistory };
-                const apiKey = ""; // Canvas will automatically provide the API key
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const result = await response.json();
+                // Call Gemini API for chatbot response using the helper function
+                const modelResponse = await callGeminiAPI(chatbotChatHistory);
 
                 // Remove typing indicator
                 if (chatMessagesContainer.contains(typingIndicator)) {
                     chatMessagesContainer.removeChild(typingIndicator);
                 }
 
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const modelResponse = result.candidates[0].content.parts[0].text;
+                if (modelResponse.startsWith("Error:")) {
+                    appendChatMessage('model', "Sorry, I couldn't generate a response. " + modelResponse);
+                } else {
                     appendChatMessage('model', modelResponse); // appendChatMessage now handles markdown
                     chatbotChatHistory.push({ role: "model", parts: [{ text: modelResponse }] });
-                } else {
-                    console.error("Gemini API returned an unexpected structure for chatbot:", result);
-                    appendChatMessage('model', "Sorry, I couldn't generate a response. Please try again.");
                 }
             } catch (error) {
-                console.error("Error calling Gemini API for chatbot:", error);
+                console.error("Error in chatbot send logic:", error);
                 // Remove typing indicator
                 if (chatMessagesContainer.contains(typingIndicator)) {
                     chatMessagesContainer.removeChild(typingIndicator);
@@ -428,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Achievements Page Specific Logic ---
+    // --- Milestones Page Specific Logic ---
     const achievementsDisplay = document.getElementById('achievements-display');
     const tabButtons = document.querySelectorAll('.achievement-tabs .tab-button');
     const filterCheckboxes = document.querySelectorAll('.filter-checkbox');
